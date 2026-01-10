@@ -32,6 +32,7 @@ const onEnter = (el, done) => {
   min-height: 100vh;
   // background-color: $black-color; // 기본 배경은 블랙
   // color: $white-color;
+  background: #000;
   overflow-x: hidden;
 }
 
