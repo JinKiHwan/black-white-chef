@@ -65,11 +65,19 @@ onMounted(() => {
       rotateY: 0,
       duration: 1,
       ease: 'power3.inOut',
-    })
-    .to('.bls-logo', {
-      backgroundColor: 'rgba(245, 245, 245, 0)',
-      duration: 2,
+      onComplete: () => {
+        gsap.to('.bls-logo', {
+          pointerEvents: 'inherit',
+        });
+        gsap.to('.spoon', {
+          cursor: 'pointer',
+        });
+      },
     });
+  // .to('.bls-logo', {
+  //   backgroundColor: 'rgba(245, 245, 245, 0)',
+  //   duration: 2,
+  // });
 });
 </script>
 
@@ -113,14 +121,14 @@ onMounted(() => {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
+  // width: 100%;
+  // height: 100%;
   z-index: 100;
-  pointer-events: none;
+  pointer-events: inherit;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba($color: #f5f5f5, $alpha: 1);
+  // background-color: rgba($color: #f5f5f5, $alpha: 1);
   .spoon {
     width: 200px;
     aspect-ratio: 1/1;
@@ -129,6 +137,11 @@ onMounted(() => {
     position: relative;
     border-radius: 50%;
     overflow: hidden;
+    transition: box-shadow 0.25s;
+
+    &:hover {
+      box-shadow: 0 0 20px rgba($color: #fff, $alpha: 0.5);
+    }
 
     &-bg {
       &-first-floor {
@@ -207,7 +220,7 @@ onMounted(() => {
             left: calc(50% + 1px);
           }
           &.spoon-black {
-            left: calc(50% - 0px);
+            left: calc(50% - 1px);
           }
 
           img {
