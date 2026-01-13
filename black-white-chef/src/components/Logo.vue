@@ -4,6 +4,31 @@ import gsap from 'gsap';
 
 const emit = defineEmits(['animation-finish']);
 
+const animateOut = (id) => {
+  return new Promise((resolve) => {
+    const tl = gsap.timeline({
+      onComplete: resolve, // 애니메이션이 끝나면 Promise 완료 신호를 보냄
+    });
+
+    //만약 id가 black일 때
+    tl.to('.spoon-bg-first-floor', {
+      rotate: -720,
+      duration: 2,
+    }).to(
+      id === 'black' ? '.spoon-black' : '.spoon-white',
+      {
+        opacity: 0,
+        duration: 1,
+      },
+      '<'
+    );
+  });
+};
+
+defineExpose({
+  animateOut,
+});
+
 onMounted(() => {
   const tl = gsap.timeline({
     defaults: { ease: 'power3.inOut' },
